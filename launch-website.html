@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇧🇬 Bulgaria Internships Platform - Launcher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00966c 0%, #d62612 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .launcher-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+        
+        .flag {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: wave 2s infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .launch-btn {
+            background: linear-gradient(45deg, #ffffff, #f0f0f0);
+            color: #333;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .launch-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .loading {
+            display: none;
+            margin-top: 1rem;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .instructions {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+            text-align: left;
+        }
+        
+        .feature-list li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .feature-list li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="launcher-container">
+        <div class="flag">🇧🇬</div>
+        <h1>България Стажове</h1>
+        <div class="subtitle">Bulgaria Internships Platform</div>
+        
+        <button class="launch-btn" onclick="launchWebsite()">
+            🚀 Launch Platform
+        </button>
+        
+        <a href="http://localhost:3000" target="_blank" class="launch-btn">
+            🌐 Open Direct Link
+        </a>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Starting development server...</div>
+        </div>
+        
+        <div class="status" id="status">
+            Ready to launch your amazing internship platform!
+        </div>
+        
+        <div class="instructions">
+            <strong>What you'll see:</strong>
+            <ul class="feature-list">
+                <li>Beautiful Bulgarian-themed design</li>
+                <li>8 realistic job listings from top companies</li>
+                <li>Advanced search and filtering</li>
+                <li>Company showcase and profiles</li>
+                <li>Mobile-responsive interface</li>
+                <li>Professional job categories</li>
+            </ul>
+            
+            <div style="margin-top: 1.5rem;">
+                <strong>📝 Note:</strong> Make sure the development server is running with <code>npm run dev</code>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function launchWebsite() {
+            const loading = document.getElementById('loading');
+            const status = document.getElementById('status');
+            
+            loading.style.display = 'block';
+            status.innerHTML = '🔄 Checking if server is running...';
+            
+            // Try to open the website
+            const newWindow = window.open('http://localhost:3000', '_blank');
+            
+            // Check if the server is responding
+            fetch('http://localhost:3000')
+                .then(response => {
+                    loading.style.display = 'none';
+                    if (response.ok) {
+                        status.innerHTML = '✅ Platform launched successfully! Check your new browser tab.';
+                        status.style.background = 'rgba(0, 150, 108, 0.3)';
+                    } else {
+                        status.innerHTML = '⚠️ Server responded but there might be an issue. Check the browser tab.';
+                        status.style.background = 'rgba(255, 193, 7, 0.3)';
+                    }
+                })
+                .catch(error => {
+                    loading.style.display = 'none';
+                    status.innerHTML = '❌ Server not running. Please start with: <code>npm run dev</code>';
+                    status.style.background = 'rgba(214, 38, 18, 0.3)';
+                    
+                    if (newWindow) {
+                        newWindow.close();
+                    }
+                });
+            
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 10000);
+        }
+        
+        // Auto-check server status on page load
+        window.addEventListener('load', function() {
+            fetch('http://localhost:3000')
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('status').innerHTML = '✅ Server is running! Ready to launch.';
+                        document.getElementById('status').style.background = 'rgba(0, 150, 108, 0.3)';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('status').innerHTML = '⚠️ Server not detected. Run <code>npm run dev</code> first.';
+                    document.getElementById('status').style.background = 'rgba(255, 193, 7, 0.3)';
+                });
+        });
+        
+        // Add some sparkle effects
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.width = '4px';
+            sparkle.style.height = '4px';
+            sparkle.style.background = 'white';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            sparkle.style.animation = 'sparkle 2s ease-out forwards';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+        
+        const sparkleStyle = document.createElement('style');
+        sparkleStyle.textContent = `
+            @keyframes sparkle {
+                0% { opacity: 0; transform: scale(0); }
+                50% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(0); }
+            }
+        `;
+        document.head.appendChild(sparkleStyle);
+        
+        setInterval(createSparkle, 1000);
+    </script>
+</body>
+</html>
