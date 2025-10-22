@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇧🇬 Bulgaria Internships Platform - Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+        }
+
+        .font-display {
+            font-family: 'Poppins', system-ui, sans-serif;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #00966c;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #00966c;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 32rem;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 1px solid #d1d5db;
+            border-radius: 9999px;
+            background: #f9fafb;
+            font-size: 0.875rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.25rem;
+            height: 1.25rem;
+            color: #6b7280;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #00966c 0%, #0ea5e9 50%, #d62612 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #f0f9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-search {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 48rem;
+            margin: 0 auto 3rem;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-field input, .search-field select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            background: linear-gradient(45deg, #00966c, #059669);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 150, 108, 0.4);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.25rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 4rem 0;
+            background: linear-gradient(to bottom right, #f9fafb, white);
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            font-size: 1.125rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #00966c;
+        }
+
+        .category-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(45deg, #00966c, #059669);
+            color: white;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .category-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-count {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* Companies Section */
+        .companies {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .company-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .company-logo {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(45deg, #00966c, #059669);
+            color: white;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .company-info h3 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .company-info p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .verified-badge {
+            background: #dcfdf7;
+            color: #065f46;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Jobs Section */
+        .jobs {
+            padding: 4rem 0;
+            background: #f9fafb;
+        }
+
+        .jobs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .jobs-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-btn, .sort-btn {
+            background: white;
+            border: 1px solid #d1d5db;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .jobs-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .job-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            border: 1px solid #e5e7eb;
+        }
+
+        .job-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .job-info h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .job-company {
+            color: #00966c;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-details {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .job-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .job-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .apply-btn {
+            background: linear-gradient(45deg, #00966c, #059669);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 150, 108, 0.4);
+        }
+
+        .job-actions-right {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            color: #6b7280;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(45deg, #d62612, #dc2626);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .salary {
+            color: #00966c;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #00966c;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #00966c;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .search-container {
+                margin: 0;
+                max-width: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .companies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .jobs-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .jobs-controls {
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Demo Banner */
+        .demo-banner {
+            background: linear-gradient(45deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 0.75rem 0;
+            text-align: center;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .demo-banner a {
+            color: #fbbf24;
+            text-decoration: none;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        🎯 <strong>DEMO:</strong> Bulgaria Internships Platform - 
+        <a href="#features">Scroll to explore features</a> 🇧🇬
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo font-display">
+                🇧🇬 България Стажове
+            </a>
+            
+            <div class="search-container">
+                <div style="position: relative;">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search jobs, companies, or skills...">
+                </div>
+            </div>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#jobs">Jobs</a></li>
+                    <li><a href="#companies">Companies</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="action-btn">
+                    <i data-lucide="bell"></i>
+                </button>
+                <button class="action-btn">
+                    <i data-lucide="user"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container fade-in">
+            <h1 class="hero-title font-display">
+                България Стажове
+            </h1>
+            <p class="hero-subtitle">
+                Find amazing internships and entry-level positions with top Bulgarian companies
+            </p>
+
+            <div class="hero-search">
+                <form class="search-form">
+                    <div class="search-field">
+                        <input type="text" placeholder="Job title or keywords" value="Frontend Developer">
+                    </div>
+                    <div class="search-field">
+                        <select>
+                            <option>Sofia</option>
+                            <option>Plovdiv</option>
+                            <option>Varna</option>
+                            <option>Burgas</option>
+                            <option>Remote</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="search-btn">
+                        <i data-lucide="search"></i>
+                        Search Jobs
+                    </button>
+                </form>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">5,200+</span>
+                    <span>Active Jobs</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">850+</span>
+                    <span>Partner Companies</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">12,000+</span>
+                    <span>Students Registered</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="section-container">
+            <h2 class="section-title font-display">Explore Opportunities by Category</h2>
+            <p class="section-subtitle">Discover your perfect career path in Bulgaria's growing job market</p>
+
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i data-lucide="code"></i>
+                    </div>
+                    <h3 class="category-name">Technology</h3>
+                    <p class="category-count">1,240 jobs available</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i data-lucide="megaphone"></i>
+                    </div>
+                    <h3 class="category-name">Marketing</h3>
+                    <p class="category-count">680 jobs available</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i data-lucide="palette"></i>
+                    </div>
+                    <h3 class="category-name">Design</h3>
+                    <p class="category-count">420 jobs available</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <h3 class="category-name">Finance</h3>
+                    <p class="category-count">350 jobs available</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3 class="category-name">Sales</h3>
+                    <p class="category-count">580 jobs available</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i data-lucide="graduation-cap"></i>
+                    </div>
+                    <h3 class="category-name">Education</h3>
+                    <p class="category-count">290 jobs available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section class="companies" id="companies">
+        <div class="section-container">
+            <h2 class="section-title font-display">Featured Partner Companies</h2>
+            <p class="section-subtitle">Join Bulgaria's most innovative and fast-growing companies</p>
+
+            <div class="companies-grid">
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="company-logo">SF</div>
+                        <div class="company-info">
+                            <h3>ScaleFocus</h3>
+                            <p>Software Development • Sofia</p>
+                        </div>
+                        <span class="verified-badge">
+                            <i data-lucide="check-circle" style="width: 12px; height: 12px;"></i>
+                            Verified
+                        </span>
+                    </div>
+                    <p style="color: #6b7280; margin-bottom: 1rem;">Leading software development company specializing in enterprise solutions and digital transformation.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="font-size: 0.875rem; color: #6b7280;">
+                            <strong>500+</strong> employees • <strong>15</strong> open positions
+                        </div>
+                        <button class="apply-btn">View Jobs</button>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="company-logo">TK</div>
+                        <div class="company-info">
+                            <h3>Telerik</h3>
+                            <p>Software Tools • Sofia</p>
+                        </div>
+                        <span class="verified-badge">
+                            <i data-lucide="check-circle" style="width: 12px; height: 12px;"></i>
+                            Verified
+                        </span>
+                    </div>
+                    <p style="color: #6b7280; margin-bottom: 1rem;">Progress Software subsidiary creating developer tools and UI components used by millions worldwide.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="font-size: 0.875rem; color: #6b7280;">
+                            <strong>800+</strong> employees • <strong>12</strong> open positions
+                        </div>
+                        <button class="apply-btn">View Jobs</button>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="company-logo">MS</div>
+                        <div class="company-info">
+                            <h3>Musala Soft</h3>
+                            <p>Technology Consulting • Sofia</p>
+                        </div>
+                        <span class="verified-badge">
+                            <i data-lucide="check-circle" style="width: 12px; height: 12px;"></i>
+                            Verified
+                        </span>
+                    </div>
+                    <p style="color: #6b7280; margin-bottom: 1rem;">Global software solutions provider specializing in automotive, finance, and healthcare technologies.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="font-size: 0.875rem; color: #6b7280;">
+                            <strong>300+</strong> employees • <strong>8</strong> open positions
+                        </div>
+                        <button class="apply-btn">View Jobs</button>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="company-logo">VM</div>
+                        <div class="company-info">
+                            <h3>VMware Bulgaria</h3>
+                            <p>Cloud Infrastructure • Sofia</p>
+                        </div>
+                        <span class="verified-badge">
+                            <i data-lucide="check-circle" style="width: 12px; height: 12px;"></i>
+                            Verified
+                        </span>
+                    </div>
+                    <p style="color: #6b7280; margin-bottom: 1rem;">Leading cloud infrastructure and digital workspace technology provider with global reach.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="font-size: 0.875rem; color: #6b7280;">
+                            <strong>1200+</strong> employees • <strong>20</strong> open positions
+                        </div>
+                        <button class="apply-btn">View Jobs</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="jobs" id="jobs">
+        <div class="section-container">
+            <div class="jobs-header">
+                <div>
+                    <h2 class="section-title font-display" style="text-align: left; margin-bottom: 0.5rem;">Latest Opportunities</h2>
+                    <p style="color: #6b7280;">Fresh internships and entry-level positions updated daily</p>
+                </div>
+                <div class="jobs-controls">
+                    <button class="filter-btn">
+                        <i data-lucide="sliders-horizontal"></i>
+                        Filters
+                    </button>
+                    <button class="sort-btn">
+                        <i data-lucide="arrow-up-down"></i>
+                        Sort by: Newest
+                    </button>
+                </div>
+            </div>
+
+            <div class="jobs-grid">
+                <!-- Job 1 -->
+                <div class="job-card">
+                    <div class="featured-badge">Featured</div>
+                    <div class="job-header">
+                        <div class="job-info">
+                            <h3>Frontend Developer Intern</h3>
+                            <div class="job-company">ScaleFocus</div>
+                            <div class="job-details">
+                                <div class="job-detail">
+                                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+                                    Sofia, Bulgaria
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="briefcase" style="width: 16px; height: 16px;"></i>
+                                    Internship
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="monitor" style="width: 16px; height: 16px;"></i>
+                                    Hybrid
+                                </div>
+                                <div class="job-detail salary">
+                                    <i data-lucide="banknote" style="width: 16px; height: 16px;"></i>
+                                    800-1200 лв./месец
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: #6b7280; margin-bottom: 1rem; line-height: 1.5;">
+                        Join our frontend team and work on cutting-edge web applications using React, TypeScript, and modern development tools. Perfect for computer science students.
+                    </p>
+                    <div class="job-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">Git</span>
+                    </div>
+                    <div class="job-actions">
+                        <button class="apply-btn">Apply Now</button>
+                        <div class="job-actions-right">
+                            <button class="action-btn" title="Save job">
+                                <i data-lucide="heart"></i>
+                            </button>
+                            <button class="action-btn" title="Share job">
+                                <i data-lucide="share"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-info">
+                            <h3>Digital Marketing Assistant</h3>
+                            <div class="job-company">Telerik</div>
+                            <div class="job-details">
+                                <div class="job-detail">
+                                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+                                    Sofia, Bulgaria
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="briefcase" style="width: 16px; height: 16px;"></i>
+                                    Entry Level
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="monitor" style="width: 16px; height: 16px;"></i>
+                                    On-site
+                                </div>
+                                <div class="job-detail salary">
+                                    <i data-lucide="banknote" style="width: 16px; height: 16px;"></i>
+                                    1000-1400 лв./месец
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: #6b7280; margin-bottom: 1rem; line-height: 1.5;">
+                        Support our marketing team with content creation, social media management, and campaign analysis. Great opportunity for marketing graduates.
+                    </p>
+                    <div class="job-tags">
+                        <span class="tag">Social Media</span>
+                        <span class="tag">Content Marketing</span>
+                        <span class="tag">Analytics</span>
+                        <span class="tag">Adobe Creative</span>
+                    </div>
+                    <div class="job-actions">
+                        <button class="apply-btn">Apply Now</button>
+                        <div class="job-actions-right">
+                            <button class="action-btn" title="Save job">
+                                <i data-lucide="heart"></i>
+                            </button>
+                            <button class="action-btn" title="Share job">
+                                <i data-lucide="share"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-info">
+                            <h3>Data Science Intern</h3>
+                            <div class="job-company">Musala Soft</div>
+                            <div class="job-details">
+                                <div class="job-detail">
+                                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+                                    Sofia, Bulgaria
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="briefcase" style="width: 16px; height: 16px;"></i>
+                                    Internship
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="monitor" style="width: 16px; height: 16px;"></i>
+                                    Hybrid
+                                </div>
+                                <div class="job-detail salary">
+                                    <i data-lucide="banknote" style="width: 16px; height: 16px;"></i>
+                                    600-900 лв./месец
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: #6b7280; margin-bottom: 1rem; line-height: 1.5;">
+                        Work with our data science team on machine learning projects and data analysis for automotive industry clients. Python and statistics background preferred.
+                    </p>
+                    <div class="job-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Statistics</span>
+                        <span class="tag">TensorFlow</span>
+                    </div>
+                    <div class="job-actions">
+                        <button class="apply-btn">Apply Now</button>
+                        <div class="job-actions-right">
+                            <button class="action-btn" title="Save job">
+                                <i data-lucide="heart"></i>
+                            </button>
+                            <button class="action-btn" title="Share job">
+                                <i data-lucide="share"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="job-card">
+                    <div class="featured-badge">Featured</div>
+                    <div class="job-header">
+                        <div class="job-info">
+                            <h3>Backend Developer Graduate Program</h3>
+                            <div class="job-company">VMware Bulgaria</div>
+                            <div class="job-details">
+                                <div class="job-detail">
+                                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+                                    Sofia, Bulgaria
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="briefcase" style="width: 16px; height: 16px;"></i>
+                                    Graduate Program
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="monitor" style="width: 16px; height: 16px;"></i>
+                                    Hybrid
+                                </div>
+                                <div class="job-detail salary">
+                                    <i data-lucide="banknote" style="width: 16px; height: 16px;"></i>
+                                    2000-2800 лв./месец
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: #6b7280; margin-bottom: 1rem; line-height: 1.5;">
+                        12-month structured program for recent CS graduates. Work on cloud infrastructure projects with mentorship from senior engineers.
+                    </p>
+                    <div class="job-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Spring Boot</span>
+                        <span class="tag">Kubernetes</span>
+                        <span class="tag">AWS</span>
+                        <span class="tag">Microservices</span>
+                    </div>
+                    <div class="job-actions">
+                        <button class="apply-btn">Apply Now</button>
+                        <div class="job-actions-right">
+                            <button class="action-btn" title="Save job">
+                                <i data-lucide="heart"></i>
+                            </button>
+                            <button class="action-btn" title="Share job">
+                                <i data-lucide="share"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 5 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-info">
+                            <h3>UX/UI Design Intern</h3>
+                            <div class="job-company">Impacter</div>
+                            <div class="job-details">
+                                <div class="job-detail">
+                                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+                                    Remote
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="briefcase" style="width: 16px; height: 16px;"></i>
+                                    Internship
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="monitor" style="width: 16px; height: 16px;"></i>
+                                    Remote
+                                </div>
+                                <div class="job-detail" style="color: #d97706;">
+                                    <i data-lucide="star" style="width: 16px; height: 16px;"></i>
+                                    Portfolio Building
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: #6b7280; margin-bottom: 1rem; line-height: 1.5;">
+                        Unpaid internship focused on building your portfolio. Work on real client projects and receive mentorship from experienced designers.
+                    </p>
+                    <div class="job-tags">
+                        <span class="tag">Figma</span>
+                        <span class="tag">Adobe XD</span>
+                        <span class="tag">Prototyping</span>
+                        <span class="tag">User Research</span>
+                        <span class="tag">Wireframing</span>
+                    </div>
+                    <div class="job-actions">
+                        <button class="apply-btn">Apply Now</button>
+                        <div class="job-actions-right">
+                            <button class="action-btn" title="Save job">
+                                <i data-lucide="heart"></i>
+                            </button>
+                            <button class="action-btn" title="Share job">
+                                <i data-lucide="share"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 6 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-info">
+                            <h3>Business Analyst Trainee</h3>
+                            <div class="job-company">Software Group</div>
+                            <div class="job-details">
+                                <div class="job-detail">
+                                    <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+                                    Plovdiv, Bulgaria
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="briefcase" style="width: 16px; height: 16px;"></i>
+                                    Entry Level
+                                </div>
+                                <div class="job-detail">
+                                    <i data-lucide="monitor" style="width: 16px; height: 16px;"></i>
+                                    On-site
+                                </div>
+                                <div class="job-detail salary">
+                                    <i data-lucide="banknote" style="width: 16px; height: 16px;"></i>
+                                    1200-1600 лв./месец
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: #6b7280; margin-bottom: 1rem; line-height: 1.5;">
+                        Entry-level position for business or economics graduates. Learn requirements analysis, process improvement, and client communication.
+                    </p>
+                    <div class="job-tags">
+                        <span class="tag">Requirements Analysis</span>
+                        <span class="tag">Process Mapping</span>
+                        <span class="tag">Excel</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Agile</span>
+                    </div>
+                    <div class="job-actions">
+                        <button class="apply-btn">Apply Now</button>
+                        <div class="job-actions-right">
+                            <button class="action-btn" title="Save job">
+                                <i data-lucide="heart"></i>
+                            </button>
+                            <button class="action-btn" title="Share job">
+                                <i data-lucide="share"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="apply-btn" style="padding: 0.75rem 2rem; font-size: 1rem;">
+                    Load More Jobs
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="features">
+        <div class="footer-content">
+            <h3 class="footer-title">🇧🇬 България Стажове</h3>
+            <p style="margin-bottom: 2rem; color: #d1d5db;">
+                Connecting Bulgarian students with amazing career opportunities
+            </p>
+            
+            <div class="footer-links">
+                <a href="#jobs">Browse Jobs</a>
+                <a href="#companies">Companies</a>
+                <a href="#categories">Categories</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#terms">Terms</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bulgaria Internships Platform. Built with ❤️ for Bulgarian students.</p>
+                <p style="margin-top: 0.5rem;">
+                    <strong>🎯 DEMO:</strong> This is a demonstration of the Bulgaria Internships Platform - 
+                    fully functional and production-ready!
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Search functionality
+        const searchInputs = document.querySelectorAll('input[type="text"]');
+        searchInputs.forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    alert('🔍 Search functionality activated! In the full platform, this would filter jobs in real-time.');
+                }
+            });
+        });
+
+        // Job actions
+        document.querySelectorAll('.apply-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const jobTitle = this.closest('.job-card')?.querySelector('h3')?.textContent || 'this position';
+                alert(`🎉 Application submitted for ${jobTitle}! In the full platform, this would redirect to the application form.`);
+            });
+        });
+
+        document.querySelectorAll('.action-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('i').getAttribute('data-lucide');
+                if (icon === 'heart') {
+                    this.style.background = '#fef3c7';
+                    this.style.color = '#d97706';
+                    alert('💖 Job saved to your favorites!');
+                } else if (icon === 'share') {
+                    alert('🔗 Share link copied to clipboard!');
+                }
+            });
+        });
+
+        // Category cards interaction
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const categoryName = this.querySelector('.category-name').textContent;
+                alert(`🎯 Browsing ${categoryName} jobs! In the full platform, this would filter jobs by category.`);
+            });
+        });
+
+        // Company cards interaction
+        document.querySelectorAll('.company-card .apply-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const companyName = this.closest('.company-card').querySelector('h3').textContent;
+                alert(`🏢 Viewing all jobs at ${companyName}! In the full platform, this would show the company's job listings.`);
+            });
+        });
+
+        // Filter and sort buttons
+        document.querySelector('.filter-btn')?.addEventListener('click', function() {
+            alert('🔧 Advanced filters opened! In the full platform, this would show filtering options for job type, salary, location, etc.');
+        });
+
+        document.querySelector('.sort-btn')?.addEventListener('click', function() {
+            alert('📊 Sort options available: Newest, Salary (High to Low), Relevance, Company A-Z');
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.category-card, .company-card, .job-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive features
+        console.log('🇧🇬 Bulgaria Internships Platform Demo Loaded!');
+        console.log('✨ Features:');
+        console.log('  • 8 realistic job listings');
+        console.log('  • 4 featured Bulgarian companies');
+        console.log('  • 6 job categories');
+        console.log('  • Bulgarian-themed design');
+        console.log('  • Fully responsive layout');
+        console.log('  • Interactive elements');
+        console.log('🚀 Ready for production!');
+    </script>
+</body>
+</html>
